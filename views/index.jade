@@ -1,0 +1,23 @@
+doctype html
+html
+    head
+        title= appTitle
+        meta(name='viewport', content='width=device-width, initial-scale=1.0')
+        link(rel='stylesheet', href='../public/style.css')
+        
+    body
+        .container
+            h1.page-header= appTitle
+        if (form) 
+            form(action='upload', method='post', enctype='multipart/form-data')
+                label(for='file') File input
+                input(type='file' name='file')
+                
+                button(type='submit') Upload
+        
+        else 
+            
+            ul
+                li= og
+                li= size
+        

@@ -1,0 +1,197 @@
+---API---
+An API is a set of features and rules allowing interaction between the software providing the API and other software components. In web dev, API commonly means a set of standard methods, properties, events, and URLs for interacting
+with web content. 
+---Abstraction---
+Abstraction in computer programming is a way to reduce complexity and allow efficient design and implementation in complex 
+software systems. It hides the technical complexity of systems behind simpler APIs. 
+---Objects---
+Objects are a data structure containing data and instructions for working with the data. Objects sometimes refer to real-world
+things, for example a car or map object in a racing game.
+
+An object is a collection of properties and the each property associated with the name-value pairs. The object can contain 
+any data types (numbers, arrays, or even other objects)
+
+There are two ways of creating JavaScript objects: 
+1. Object literals
+2. Object constructor
+
+Object literals examples: 
+
+var emptyObj = {}; 
+var emptyObj = {
+	id: 2,
+	name: "Zach", 
+	logName: function() {
+		console.log(this.name);
+	}
+	
+};
+
+Object constructor examples: 
+var obj = new Object(); 
+Obj.id = 2; 
+Obj.name = 'Zach'; 
+Obj.logName = function() {
+	console.log(this.name);
+}; 
+
+---Prototypes---
+All JavaScript objects have an object and its property called prototype and its used to add and the custom functions and 
+property. 
+
+String.prototype.repeatify = String.prototype.repeatify || function(times) {
+	var str = '';
+
+	for (Var i = 0; i < times; i++) {
+		str += this;
+	}
+
+	return str; 
+}
+
+console.log('hello'.repeatify(3)); //Will log 'hellohellohello' to the console. 
+
+This accomplishes two things: 
+It shows inheritance in Javascript and the  prototype property. 
+It also shows how you are able to extend native data type  functionalities (all though, this should not  be done)
+Another important point, it shows how to not override possible already defined functions. This is done by testing that
+the function didn't exist before defining your own. 
+
+Ex.
+String.prototype.repeatify = String.prototype.repeatify || function(times) 
+
+
+
+---Object Oriented Programming---
+Object-oriented programming is an approach in programming in which data is encapsulated (enclosed in) within objects. The 
+object itself is operated on, rather than its component parts. 
+
+JavaScript is heavily object-oriented. It follows a prototype-based model as opposed to class-based. 
+A class defines an object's characteristics. Class is a template definition of an object's properties and methods, the 'blueprint' from which other more specific instances of the object are drawn. 
+
+---Polymorphism---
+The presentation of one interface for multiple data types. 
+For example, integers, floats, and doubles are implicitly polymorphic: regardless of their different types, they 
+can all be added, subtracted, multiplied, and so one. 
+
+In the case of object oriented programming, by making the class responsible for its code as well as its own data, polymorphism
+can be achieved in that each class has its own function that (once called) behaves properly for any object. 
+
+---Lexical Scope---
+The lexing process examines a string of source code characters and assigns semantic meaning to the  tokens as a result of some stateful parsing. 
+
+It is this concept which provides the foundation to understand what lexical scope is and  where the name comes from. 
+
+Lexical scope is scope that is defined at lexing time. In other words, lexical scope is based on where varibales and blocks of  scope are authored, by you, at write time, and thus is (mostly) set in stone by the time the  lexer processes your code. 
+
+function foo(a) {
+	var b = a * 2; 
+
+	function bar(c) {
+		console.log(a, b, c);
+	}
+
+	bar(b * 3);
+}
+
+foo(2); //2, 4, 12
+
+Global scope: has just one identifier in it  : foo.
+foo scope: includes three identifiers: a, bar and b
+bar scope: which just includes c.
+
+Note: scope look-ups  stop once it finds the first match. 
+
+Important Note: Global variables are also automatically properties of the global object (window in browsers, etc.) so it is possible to reference a  global variable not directly by its lexical name, but instead indirectly as a property reference of the global object. 
+
+---Hoisting---
+There's a temptation to think that  all of  the code you see in a JavaScript program is  interpreted line-by-line, top-down in order, as the program executes. While that is substantially  true, there's one  part of  that assumption which can lead to incorrect thinking about your program. 
+
+Consider this: 
+
+a = 2; 
+var a; 
+console.log(a); 
+
+Many developers would expect to see undefined, since the  var a statement comes after the a = 2, and it  would seem natural to assume that the variable is re-defined, and thus assigned the default undefined. However, the output will be 2. 
+
+Consider another piece of code: 
+
+console.log(a); 
+
+var a = 2; 
+
+You might be tempted to think that 2 will be logged into the console. Or you might think that since the a variable is used before it is declared, this must result in a  ReferenceError being thrown. 
+
+Unfortunately, both guesses are incorrect. Undefined is  the  output. 
+
+What's going on here? 
+
+The best way to think about it is that  all declarations, both variables and functions, are processed first, before any part of your code is executed. 
+
+Essentially, when the javascript engine sees var a = 2, it really sees two statements: var a; and a = 2; or better put, the declaration of the a variable, and then the assignment of the value 2 to the a variable. That's why in our second snippet, a is undefined. Javascript sees that statement as: 
+
+var a; 
+
+console.log(a); 
+
+a = 2; 
+
+So, one way of thinking, sort of metaphorically about this  process is that  variable and function declarations are "moved" from where they appear in the flow of  the code to the top of the code. This gives rise to the name "Hoisting".
+
+In other words, the egg (declaration) comes before the chicken (assignment).
+
+Note: only the declarations themselves are hoisted, while any assignments or other executable logic are  left in place. If hoisting  were to re-arrange the executable logic of our code, that could wreak havoc. 
+
+Another illustration of hoisting: 
+function test() {
+	console.log(a);
+	console.log(foo());
+
+	var a = 1; 
+	function foo() {
+		return 2;
+	}
+}
+
+test(); 
+
+//This will output undefined and a
+
+This is because both variables and functions are hoisted (moved to the top of the function) but variables don't retain any
+assigned value. So, at the time the variable a is printed, it exists in the function but it doesn't hold any value.
+
+---Closure---
+Closure is when a function is able to remember and access its lexical scope even when that function is executing outside of its lexical scope. 
+
+example: 
+
+function foo() {
+	var a = 2;
+
+	function bar() {
+		console.log(a); //2
+	}
+
+	bar();
+}
+
+foo();
+
+--this--
+
+What is the result of the following code and explain: 
+
+var fullname = 'John Doe'; 
+var obj = {
+	fullname: 'Colin Ihrig', 
+	prop: {
+		fullname: 'Aurelio De Rosa', 
+		getFullname: function() {
+			return this.fullname; 
+		}
+	}
+}; 
+
+console.log(obj.prop.getFullname()); 
+var test

@@ -1,0 +1,12 @@
+Functional Overview
+	AvaTax OnDemand is a powerful, online sales tax compliance solution that provides businesses with sales tax automation. 
+
+	During check out shopping cart and customer information is transmitted via Avatax API web service specifications. Tax information is sent back and applied to products in the cart. 
+
+	Advanced Address Validation logic has been added to assist with filtering certain countries (configured in the custom site preferences) and to enable/disable the AVS calls. 
+
+	A testing center hasbeen added to assist clients and developers with testing connections and committing tax requests to the Avatax console. 
+
+	Detailed transaction logging on the Avatax console. 
+
+	A customer code has been added to the Customer object in Business Manager so each customer will have a unique code. 

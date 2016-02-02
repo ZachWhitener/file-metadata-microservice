@@ -1,0 +1,47 @@
+Adding a custom order attribute
+
+09/30/15
+
+Ticket states:
+1. Add custom attribute on the order object
+        String, shiptoCountry
+2. Create metadata for shiptoCountry
+        1. Export all metadata from your sandbox
+        2. Edit the XML to only include the order system object and the its attribute group
+        3. Name the metadata "YYMMDD_shiptoCountry_O.xml"
+        4. Import that back into your sandbox to verify the XML is properly formatted
+3. Update eSW.XML pipeline in the CreateDWOrder pipeline
+        1. Add from current session country
+        2. Add to to Order.custom.shipToCountry
+4. Test
+        1.Run several tests on your sandbox from different countries and verify that the new custom attribute is appearing correctly in the order
+        2. Export your tests and verify that the shiptoCountry is included and properly set
+5. Code Review
+6. Commit code and metadata.
+
+How to tackle: 
+
+1. 
+
+Administration -> Site Development -> System Object Definitions
+Clicked on Order -> scroll to the bottom and click on new. Give ID and value type
+
+2. 
+Export metadata. Adiministration -> Site Development -> Import / Export 
+Export all of the sandboxes metadata (top option). Edit the metadata xml file to just include the 
+type extension (in this case, Order), custom attribute definition (shiptoCountry), and the grouping (all groups). 
+
+3. 
+In the pipeline, create an assign node after the order object is created. Assign the CurrentSession.custom.country ->
+Order.custom.shiptoCountry 
+
+4. 
+Another way to check besides debugging. 
+Check expressions in eclipse under window->show view-> expressions (while debugging)
+Merchant Tools -> Ordering -> Orders
+Click Find, get desired order number, click on the attributes tab and look for the group the
+custom attribute is located in
+
+
+
+

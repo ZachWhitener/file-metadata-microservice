@@ -1,0 +1,15 @@
+Javascript 
+
+Gooogle maps reference: 
+
+Geocoding is the  process of  converting addresses like 1300 dusty ln, Howell, MI into geographic coordinates (like latitude 37.423021 and longitude -122.083739) which you can use to place markers or position the map. 
+
+Reverse geocoding is the process of  converting  geographic coordinates inta a human-readable address. 
+
+You access the  Google Maps Api geocoding service within your code via the google.maps.Geocoder object. The Geocoder.geocode() method initiates a request to the geocoding  service, passing it a GeocoderReque2.st object literal containing the input terms and a callback method to execute upon receipt of the response. 
+
+You must pass in one  of the following parameters: 
+1.address-The address you want  to geocode
+2.location-The LatLng (or LatLngLiteral) for which you wish to obtain the closest, human-readable address. The geocoder performs a reverse geocode.
+3.placeId-The place ID of the place for which you wish to obtain the closest, human-readable address. The place ID is a unique identifier that can be used with other Google APIs. For example, you can use the placeId returned by the Google Maps Roads API to get the address for a  snapped point. For more information about place IDs, see place ID overview. If you pass  a placeId, the geocoder performs a reverse geocode. 
+
